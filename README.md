@@ -73,4 +73,3 @@ Each round proceeds as follows:
 Once all players have either busted or stood, it's the dealer's turn to play. They turns their face-down card over. They then hit until their score is 17 or higher at which point they must stand. The dealer cannot decide to hit or stand, if their hand's score is 16 or lower, they must hit, and at 17 or higher, they must stand.
 
 If the dealer busts, any players who did not bust earlier automatically win the round. Otherwise, each player wins if they have a strictly higher score than the dealer, or loses if they have a strictly lower score, and "pushes" (ties) if they have the same score.
-# Blackjack-TDD-practice
