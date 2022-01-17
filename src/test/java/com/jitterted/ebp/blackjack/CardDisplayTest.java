@@ -16,9 +16,9 @@ class CardDisplayTest {
 
     @Test
     void displayNonTenAsString() {
-        final Card card = new Card(Suit.CLUBS, Rank.TEN);
+        final Card card = new Card(Suit.CLUBS, Rank.THREE);
         final String display = Card.display(card.rank(), card.suit());
         assertThat(display)
-                .isEqualTo("[30m┌─────────┐[1B[11D│10       │[1B[11D│         │[1B[11D│    ♣    │[1B[11D│         │[1B[11D│       10│[1B[11D└─────────┘");
+                .isEqualTo("[30m┌─────────┐[1B[11D│3        │[1B[11D│         │[1B[11D│    ♣    │[1B[11D│         │[1B[11D│        3│[1B[11D└─────────┘");
     }
 }
