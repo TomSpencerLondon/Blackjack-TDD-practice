@@ -38,7 +38,7 @@ public class Hand {
         return handValue;
     }
 
-    public Card firstCard() {
+    public Card faceUpCard() {
         return cards().get(0);
     }
 
