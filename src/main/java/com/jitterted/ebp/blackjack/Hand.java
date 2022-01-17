@@ -2,7 +2,6 @@ package com.jitterted.ebp.blackjack;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.fusesource.jansi.Ansi.ansi;
 
@@ -16,14 +15,18 @@ public class Hand {
     public Hand() {
     }
 
+    public List<Card> cards() {
+        return cards;
+    }
+
     private int value() {
-        int handValue = cards
+        int handValue = cards()
                 .stream()
                 .mapToInt(Card::rankValue)
                 .sum();
 
         // does the hand contain at least 1 Ace?
-        boolean hasAce = cards
+        boolean hasAce = cards()
                 .stream()
                 .anyMatch(card -> card.rankValue() == 1);
 
@@ -36,7 +39,7 @@ public class Hand {
     }
 
     public Card firstCard() {
-        return cards.get(0);
+        return cards().get(0);
     }
 
     boolean dealerMustDrawCard() {
@@ -44,14 +47,11 @@ public class Hand {
     }
 
     void display() {
-        System.out.println(cards.stream()
-                                .map(ConsoleCard::display)
-                                .collect(Collectors.joining(
-                                        ansi().cursorUp(6).cursorRight(1).toString())));
+        System.out.println(ConsoleHand.cardsAsString(this));
     }
 
     public void drawFrom(Deck deck) {
-        cards.add(deck.draw());
+        cards().add(deck.draw());
     }
 
     boolean isBusted() {
