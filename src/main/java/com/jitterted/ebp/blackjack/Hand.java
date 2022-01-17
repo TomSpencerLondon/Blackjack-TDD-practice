@@ -36,7 +36,7 @@ public class Hand {
     }
 
     String displayFirstCard() {
-        return Card.display(cards.get(0).rank(), cards.get(0).suit());
+        return ConsoleCard.display(cards.get(0));
     }
 
     boolean dealerMustDrawCard() {
@@ -45,7 +45,7 @@ public class Hand {
 
     void display() {
         System.out.println(cards.stream()
-                                .map(card -> Card.display(card.rank(), card.suit()))
+                                .map(ConsoleCard::display)
                                 .collect(Collectors.joining(
                                         ansi().cursorUp(6).cursorRight(1).toString())));
     }

@@ -2,23 +2,24 @@ package com.jitterted.ebp.blackjack;
 
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.*;
 
 class CardDisplayTest {
 
     @Test
-    void displayTenAsString() {
-        final Card card = new Card(Suit.CLUBS, Rank.TEN);
-        final String display = Card.display(card.rank(), card.suit());
-        assertThat(display)
+    public void displayTenAsString() throws Exception {
+        Card card = new Card(Suit.CLUBS, Rank.TEN);
+
+        assertThat(ConsoleCard.display(card))
                 .isEqualTo("[30m┌─────────┐[1B[11D│10       │[1B[11D│         │[1B[11D│    ♣    │[1B[11D│         │[1B[11D│       10│[1B[11D└─────────┘");
     }
 
     @Test
-    void displayNonTenAsString() {
-        final Card card = new Card(Suit.CLUBS, Rank.THREE);
-        final String display = Card.display(card.rank(), card.suit());
-        assertThat(display)
-                .isEqualTo("[30m┌─────────┐[1B[11D│3        │[1B[11D│         │[1B[11D│    ♣    │[1B[11D│         │[1B[11D│        3│[1B[11D└─────────┘");
+    public void displayNonTenAsString() throws Exception {
+        Card card = new Card(Suit.HEARTS, Rank.THREE);
+
+        assertThat(ConsoleCard.display(card))
+                .isEqualTo("[31m┌─────────┐[1B[11D│3        │[1B[11D│         │[1B[11D│    ♥    │[1B[11D│         │[1B[11D│        3│[1B[11D└─────────┘");
     }
+
 }
