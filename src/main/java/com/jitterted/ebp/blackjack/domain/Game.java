@@ -72,6 +72,12 @@ public class Game {
     }
 
     public void dealerTurn() {
-        dealerHand.drawFrom(deck);
+        // Dealer makes its choice automatically based on a simple heuristic
+        // value of hand: <= 16 must hit, => 17 must stand
+        if (!playerHand.isBusted()) {
+            while(dealerHand.dealerMustDrawCard()) {
+                dealerHand.drawFrom(deck);
+            }
+        }
     }
 }

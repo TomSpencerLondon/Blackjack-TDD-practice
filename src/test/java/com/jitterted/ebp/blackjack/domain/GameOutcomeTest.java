@@ -6,30 +6,30 @@ import org.junit.jupiter.api.Test;
 
 class GameOutcomeTest {
     @Test
-    void playerHitsAndGoesBustAndLoses() {
-        Deck stubDeck = new StubDeck(/* predictable set of cards for this scenario */);
-        Game game = new Game(stubDeck);
-
-        game.initialDeal();
-
-        game.playerHits();
-
-        assertThat(game.isPlayerDone())
-                .isEqualTo(true);
-    }
-
-    @Test
     public void playerBeatsDealer() {
-        Deck stubDeck = new StubDeck(/* predictable set of cards for this scenario */);
+        Deck stubDeck = StubDeck.playerBeatsDealerUponInitialDeal();
         Game game = new Game(stubDeck);
         game.initialDeal();
 
         game.playerStands(); // make sure the player stands
         game.dealerTurn(); // dealer needs to take its turn
 
-        String outcome = game.determineOutcome().text();
+        GameOutcome outcome = game.determineOutcome();
         assertThat(outcome)
-                .isEqualTo("Dealer went BUST, Player wins! Yay for you!! 💵");
+                .isEqualTo(GameOutcome.PLAYER_WINS);
+    }
+
+    @Test
+    void playerHitsAndGoesBustAndLoses() {
+        Deck stubDeck = StubDeck.playerHitsAndGoesBust();
+        Game game = new Game(stubDeck);
+
+        game.initialDeal();
+
+        game.playerHits();
+
+        assertThat(game.determineOutcome())
+                .isEqualTo(GameOutcome.PLAYER_BUSTED);
     }
 
 }
