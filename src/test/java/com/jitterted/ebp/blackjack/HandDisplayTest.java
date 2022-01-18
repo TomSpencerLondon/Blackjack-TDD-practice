@@ -16,7 +16,7 @@ public class HandDisplayTest {
     }
 
     @Test
-    void cardsAsString() {
+    void cardsAsStringTransformsWholeHandToDisplayString() {
         Hand hand = new Hand(List.of(new Card(Suit.HEARTS, Rank.ACE), new Card(Suit.CLUBS, Rank.ACE)));
 
         assertThat(ConsoleHand.cardsAsString(hand))
