@@ -6,6 +6,7 @@ public class Game {
 
     private final Hand dealerHand = new Hand();
     private final Hand playerHand = new Hand();
+    private boolean playerDone;
 
     public Deck deck() {
         return deck;
@@ -13,6 +14,19 @@ public class Game {
 
     public Hand dealerHand() {
         return dealerHand;
+    }
+
+    public void playerHits() {
+        playerHand.drawFrom(deck);
+        playerDone = playerHand.isBusted();
+    }
+
+    public void playerStands() {
+        playerDone = true;
+    }
+
+    public boolean isPlayerDone() {
+        return playerDone;
     }
 
     // "Query" rule: SNAPSHOT (point in time), does not allow
@@ -28,8 +42,8 @@ public class Game {
         return playerHand;
     }
 
-    public Game() {
-        deck = new Deck();
+    public Game(Deck deck) {
+        this.deck = deck;
     }
 
     public void initialDeal() {
@@ -55,5 +69,9 @@ public class Game {
         } else {
             return "You lost to the Dealer. 💸";
         }
+    }
+
+    public void dealerTurn() {
+        dealerHand.drawFrom(deck);
     }
 }

@@ -49,7 +49,7 @@ public class Hand {
     }
 
     public void drawFrom(Deck deck) {
-        cards().add(deck.draw());
+        cards.add(deck.draw());
     }
 
     public boolean isBusted() {
