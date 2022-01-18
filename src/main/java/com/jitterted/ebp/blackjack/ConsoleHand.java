@@ -9,6 +9,7 @@ public class ConsoleHand {
         return ConsoleCard.display(hand.faceUpCard());
     }
 
+    // DOMAIN -> transforms / mapping -> DTO (String)
     public static String cardsAsString(Hand hand) {
         return hand.cards().stream()
                    .map(ConsoleCard::display)
