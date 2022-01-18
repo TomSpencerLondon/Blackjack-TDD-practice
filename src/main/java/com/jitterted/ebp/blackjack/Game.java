@@ -1,7 +1,6 @@
 package com.jitterted.ebp.blackjack;
 
 import com.jitterted.ebp.blackjack.console.ConsoleGame;
-import com.jitterted.ebp.blackjack.console.ConsoleHand;
 
 import static org.fusesource.jansi.Ansi.ansi;
 
@@ -53,7 +52,7 @@ public class Game {
 
         dealerTurn();
 
-        displayFinalGameState();
+        ConsoleGame.displayFinalGameState(this);
 
         ConsoleGame.determineOutcome(this);
     }
@@ -71,18 +70,6 @@ public class Game {
                 dealerHand.drawFrom(deck);
             }
         }
-    }
-
-    private void displayFinalGameState() {
-        System.out.print(ansi().eraseScreen().cursor(1, 1));
-        System.out.println("Dealer has: ");
-        System.out.println(ConsoleHand.cardsAsString(dealerHand));
-        System.out.println(" (" + dealerHand.value() + ")");
-
-        System.out.println();
-        System.out.println("Player has: ");
-        System.out.println(ConsoleHand.cardsAsString(playerHand));
-        System.out.println(" (" + playerHand.value() + ")");
     }
 
 }

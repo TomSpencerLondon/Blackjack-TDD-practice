@@ -86,4 +86,16 @@ public class ConsoleGame {
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
     }
+
+    public static void displayFinalGameState(Game game) {
+        System.out.print(ansi().eraseScreen().cursor(1, 1));
+        System.out.println("Dealer has: ");
+        System.out.println(ConsoleHand.cardsAsString(game.dealerHand()));
+        System.out.println(" (" + game.dealerHand().value() + ")");
+
+        System.out.println();
+        System.out.println("Player has: ");
+        System.out.println(ConsoleHand.cardsAsString(game.playerHand()));
+        System.out.println(" (" + game.playerHand().value() + ")");
+    }
 }
