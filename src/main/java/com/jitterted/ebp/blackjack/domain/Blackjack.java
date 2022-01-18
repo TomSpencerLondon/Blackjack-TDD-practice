@@ -1,4 +1,4 @@
-package com.jitterted.ebp.blackjack;
+package com.jitterted.ebp.blackjack.domain;
 
 public class Blackjack {
     // Assembling and configuring objects (bootstrap or initialize)

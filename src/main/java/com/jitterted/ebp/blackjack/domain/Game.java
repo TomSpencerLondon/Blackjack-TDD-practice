@@ -1,6 +1,6 @@
-package com.jitterted.ebp.blackjack;
+package com.jitterted.ebp.blackjack.domain;
 
-import com.jitterted.ebp.blackjack.console.ConsoleGame;
+import com.jitterted.ebp.blackjack.adapter.in.console.ConsoleGame;
 
 import static org.fusesource.jansi.Ansi.ansi;
 

@@ -1,7 +1,7 @@
-package com.jitterted.ebp.blackjack.console;
+package com.jitterted.ebp.blackjack.adapter.in.console;
 
-import com.jitterted.ebp.blackjack.Card;
-import com.jitterted.ebp.blackjack.Rank;
+import com.jitterted.ebp.blackjack.domain.Card;
+import com.jitterted.ebp.blackjack.domain.Rank;
 import org.fusesource.jansi.Ansi;
 
 import static org.fusesource.jansi.Ansi.ansi;
