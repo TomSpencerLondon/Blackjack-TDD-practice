@@ -41,20 +41,6 @@ public class ConsoleGame {
                                    .fgBlack().a(" BlackJack game"));
     }
 
-    public void determineOutcome() {
-        if (game.playerHand().isBusted()) {
-            System.out.println("You Busted, so you lose.  💸");
-        } else if (game.dealerHand().isBusted()) {
-            System.out.println("Dealer went BUST, Player wins! Yay for you!! 💵");
-        } else if (game.playerHand().beats(game.dealerHand())) {
-            System.out.println("You beat the Dealer! 💵");
-        } else if (game.playerHand().pushes(game.dealerHand())) {
-            System.out.println("Push: Nobody wins, we'll call it even.");
-        } else {
-            System.out.println("You lost to the Dealer. 💸");
-        }
-    }
-
     public void displayGameState(Game game) {
         System.out.print(ansi().eraseScreen().cursor(1, 1));
         System.out.println("Dealer has: ");
@@ -125,7 +111,7 @@ public class ConsoleGame {
 
         dealerTurn();
         displayFinalGameState();
-        determineOutcome();
+        System.out.println(game.determineOutcome());
         resetScreen();
     }
 }

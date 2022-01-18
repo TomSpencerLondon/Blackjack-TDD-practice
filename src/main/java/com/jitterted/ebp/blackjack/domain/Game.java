@@ -43,4 +43,17 @@ public class Game {
         dealerHand.drawFrom(deck);
     }
 
+    public String determineOutcome() {
+        if (playerHand().isBusted()) {
+            return "You Busted, so you lose.  💸";
+        } else if (dealerHand().isBusted()) {
+            return "Dealer went BUST, Player wins! Yay for you!! 💵";
+        } else if (playerHand().beats(dealerHand())) {
+            return "You beat the Dealer! 💵";
+        } else if (playerHand().pushes(dealerHand())) {
+            return "Push: Nobody wins, we'll call it even.";
+        } else {
+            return "You lost to the Dealer. 💸";
+        }
+    }
 }
