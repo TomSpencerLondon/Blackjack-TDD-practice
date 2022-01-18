@@ -41,7 +41,7 @@ public class Hand {
     }
 
     public Card faceUpCard() {
-        return cards().get(0);
+        return cards.get(0);
     }
 
     boolean dealerMustDrawCard() {
