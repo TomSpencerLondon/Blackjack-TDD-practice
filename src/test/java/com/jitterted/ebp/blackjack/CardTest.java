@@ -1,4 +1,4 @@
-package com.jitterted.ebp.blackjack.domain;
+package com.jitterted.ebp.blackjack;
 
 import com.jitterted.ebp.blackjack.adapter.in.console.ConsoleCard;
 import com.jitterted.ebp.blackjack.domain.Card;

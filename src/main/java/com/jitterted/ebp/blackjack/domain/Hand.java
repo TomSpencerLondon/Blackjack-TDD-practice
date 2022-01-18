@@ -44,7 +44,7 @@ public class Hand {
         return cards.get(0);
     }
 
-    boolean dealerMustDrawCard() {
+    public boolean dealerMustDrawCard() {
         return value() <= 16;
     }
 

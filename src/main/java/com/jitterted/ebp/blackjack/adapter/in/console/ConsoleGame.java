@@ -10,6 +10,14 @@ import org.fusesource.jansi.Ansi;
 import org.fusesource.jansi.AnsiConsole;
 
 public class ConsoleGame {
+    private final Game game;
+
+    public ConsoleGame(Game game) {
+        this.game = game;
+    }
+
+
+
     public static void resetScreen() {
         System.out.println(ansi().reset());
     }
@@ -33,7 +41,7 @@ public class ConsoleGame {
                                    .fgBlack().a(" BlackJack game"));
     }
 
-    public static void determineOutcome(Game game) {
+    public void determineOutcome() {
         if (game.playerHand().isBusted()) {
             System.out.println("You Busted, so you lose.  💸");
         } else if (game.dealerHand().isBusted()) {
@@ -47,7 +55,7 @@ public class ConsoleGame {
         }
     }
 
-    public static void displayGameState(Game game) {
+    public void displayGameState(Game game) {
         System.out.print(ansi().eraseScreen().cursor(1, 1));
         System.out.println("Dealer has: ");
         System.out.println(ConsoleHand.displayFirstCard(game.dealerHand())); // first card is Face Up
@@ -61,7 +69,7 @@ public class ConsoleGame {
         System.out.println(" (" + game.playerHand().value() + ")");
     }
 
-    public static void playerTurn(Game game) {
+    public void playerTurn() {
         // get Player's decision: hit until they stand, then they're done (or they go bust)
 
         while (!game.playerHand().isBusted()) {
@@ -87,7 +95,7 @@ public class ConsoleGame {
         return scanner.nextLine();
     }
 
-    public static void displayFinalGameState(Game game) {
+    public void displayFinalGameState() {
         System.out.print(ansi().eraseScreen().cursor(1, 1));
         System.out.println("Dealer has: ");
         System.out.println(ConsoleHand.cardsAsString(game.dealerHand()));
@@ -97,5 +105,27 @@ public class ConsoleGame {
         System.out.println("Player has: ");
         System.out.println(ConsoleHand.cardsAsString(game.playerHand()));
         System.out.println(" (" + game.playerHand().value() + ")");
+    }
+
+    public void dealerTurn() {
+        // Dealer makes its choice automatically based on a simple heuristic (value of hand: <=16 must hit, =>17 must stand)
+        if (!game.playerHand().isBusted()) {
+            while (game.dealerHand().dealerMustDrawCard()) {
+                game.dealerHand().drawFrom(game.deck());
+            }
+        }
+    }
+
+    public void start() {
+        ConsoleGame.displayWelcomeScreen();
+        ConsoleGame.waitForEnterFromUser();
+
+        game.initialDeal();
+        playerTurn();
+
+        dealerTurn();
+        displayFinalGameState();
+        determineOutcome();
+        resetScreen();
     }
 }

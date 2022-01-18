@@ -1,4 +1,4 @@
-package com.jitterted.ebp.blackjack.domain;
+package com.jitterted.ebp.blackjack;
 
 import com.jitterted.ebp.blackjack.domain.Card;
 import com.jitterted.ebp.blackjack.domain.Deck;
