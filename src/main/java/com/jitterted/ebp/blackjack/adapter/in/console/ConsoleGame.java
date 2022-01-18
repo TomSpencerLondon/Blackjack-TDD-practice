@@ -16,25 +16,24 @@ public class ConsoleGame {
         this.game = game;
     }
 
-    public void displayGameState(Game game) {
-        System.out.print(ansi().eraseScreen().cursor(1, 1));
-        System.out.println("Dealer has: ");
-        System.out.println(ConsoleHand.displayFirstCard(game.dealerHand())); // first card is Face Up
+    public void start() {
+        displayWelcomeScreen();
+        waitForEnterFromUser();
 
-        // second card is the Dealer's hole card, which is hidden
-        ConsoleCard.displayBackOfCard();
+        game.initialDeal();
+        playerTurn();
 
-        System.out.println();
-        System.out.println("Player has: ");
-        System.out.println(ConsoleHand.cardsAsString(game.playerHand()));
-        System.out.println(" (" + game.playerHand().value() + ")");
+        dealerTurn();
+        displayFinalGameState();
+        System.out.println(game.determineOutcome());
+        resetScreen();
     }
 
     public void playerTurn() {
         // get Player's decision: hit until they stand, then they're done (or they go bust)
 
         while (!game.playerHand().isBusted()) {
-            displayGameState(game);
+            displayGameState();
             String playerChoice = inputFromPlayer().toLowerCase();
             if (playerChoice.startsWith("s")) {
                 break;
@@ -50,10 +49,24 @@ public class ConsoleGame {
         }
     }
 
-    public static String inputFromPlayer() {
+    public String inputFromPlayer() {
         System.out.println("[H]it or [S]tand?");
         Scanner scanner = new Scanner(System.in);
         return scanner.nextLine();
+    }
+
+    public void displayGameState() {
+        System.out.print(ansi().eraseScreen().cursor(1, 1));
+        System.out.println("Dealer has: ");
+        System.out.println(ConsoleHand.displayFirstCard(game.dealerHand())); // first card is Face Up
+
+        // second card is the Dealer's hole card, which is hidden
+        ConsoleCard.displayBackOfCard();
+
+        System.out.println();
+        System.out.println("Player has: ");
+        System.out.println(ConsoleHand.cardsAsString(game.playerHand()));
+        System.out.println(" (" + game.playerHand().value() + ")");
     }
 
     public void displayFinalGameState() {
@@ -75,19 +88,6 @@ public class ConsoleGame {
                 game.dealerHand().drawFrom(game.deck());
             }
         }
-    }
-
-    public void start() {
-        displayWelcomeScreen();
-        waitForEnterFromUser();
-
-        game.initialDeal();
-        playerTurn();
-
-        dealerTurn();
-        displayFinalGameState();
-        System.out.println(game.determineOutcome());
-        resetScreen();
     }
 
     private void resetScreen() {
