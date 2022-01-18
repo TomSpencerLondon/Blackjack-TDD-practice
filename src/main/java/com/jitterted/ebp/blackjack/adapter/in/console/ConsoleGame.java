@@ -16,31 +16,6 @@ public class ConsoleGame {
         this.game = game;
     }
 
-
-
-    public static void resetScreen() {
-        System.out.println(ansi().reset());
-    }
-
-    public static void waitForEnterFromUser() {
-        System.out.println(ansi()
-                                   .cursor(3, 1)
-                                   .fgBrightBlack().a("Hit [ENTER] to start..."));
-
-        System.console().readLine();
-    }
-
-    public static void displayWelcomeScreen() {
-        AnsiConsole.systemInstall();
-        System.out.println(ansi()
-                                   .bgBright(Ansi.Color.WHITE)
-                                   .eraseScreen()
-                                   .cursor(1, 1)
-                                   .fgGreen().a("Welcome to")
-                                   .fgRed().a(" JitterTed's")
-                                   .fgBlack().a(" BlackJack game"));
-    }
-
     public void displayGameState(Game game) {
         System.out.print(ansi().eraseScreen().cursor(1, 1));
         System.out.println("Dealer has: ");
@@ -103,8 +78,8 @@ public class ConsoleGame {
     }
 
     public void start() {
-        ConsoleGame.displayWelcomeScreen();
-        ConsoleGame.waitForEnterFromUser();
+        displayWelcomeScreen();
+        waitForEnterFromUser();
 
         game.initialDeal();
         playerTurn();
@@ -113,5 +88,28 @@ public class ConsoleGame {
         displayFinalGameState();
         System.out.println(game.determineOutcome());
         resetScreen();
+    }
+
+    private void resetScreen() {
+        System.out.println(ansi().reset());
+    }
+
+    private void waitForEnterFromUser() {
+        System.out.println(ansi()
+                                   .cursor(3, 1)
+                                   .fgBrightBlack().a("Hit [ENTER] to start..."));
+
+        System.console().readLine();
+    }
+
+    private void displayWelcomeScreen() {
+        AnsiConsole.systemInstall();
+        System.out.println(ansi()
+                                   .bgBright(Ansi.Color.WHITE)
+                                   .eraseScreen()
+                                   .cursor(1, 1)
+                                   .fgGreen().a("Welcome to")
+                                   .fgRed().a(" JitterTed's")
+                                   .fgBlack().a(" BlackJack game"));
     }
 }
