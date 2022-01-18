@@ -32,9 +32,4 @@ class GameOutcomeTest {
                 .isEqualTo("Dealer went BUST, Player wins! Yay for you!! 💵");
     }
 
-    private class StubDeck extends Deck {
-        public Card draw() {
-            return new Card(Suit.CLUBS, Rank.TEN);
-        }
-    }
 }
