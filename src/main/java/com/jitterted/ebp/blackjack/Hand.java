@@ -15,6 +15,8 @@ public class Hand {
     public Hand() {
     }
 
+    // SNAPSHOT of information ("point of time")
+    // immutable: don't want clients/consumers to change this object
     public List<Card> cards() {
         return List.copyOf(cards);
     }
