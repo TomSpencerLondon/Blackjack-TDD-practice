@@ -1,5 +1,6 @@
 package com.jitterted.ebp.blackjack;
 
+import com.jitterted.ebp.blackjack.console.ConsoleHand;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;

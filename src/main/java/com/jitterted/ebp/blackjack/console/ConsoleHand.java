@@ -1,6 +1,9 @@
-package com.jitterted.ebp.blackjack;
+package com.jitterted.ebp.blackjack.console;
 
 import static org.fusesource.jansi.Ansi.ansi;
+
+import com.jitterted.ebp.blackjack.Hand;
+import com.jitterted.ebp.blackjack.console.ConsoleCard;
 
 import java.util.stream.Collectors;
 
