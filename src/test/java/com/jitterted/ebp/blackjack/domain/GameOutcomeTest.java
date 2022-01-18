@@ -32,4 +32,14 @@ class GameOutcomeTest {
                 .isEqualTo(GameOutcome.PLAYER_BUSTED);
     }
 
+    @Test
+    void playerWinsWithBlackJack() {
+        Deck stubDeck = StubDeck.playerGetsBlackJack();
+        final Game game = new Game(stubDeck);
+
+        game.initialDeal();
+
+        assertThat(game.determineOutcome())
+                .isEqualTo(GameOutcome.PLAYER_BLACKJACK);
+    }
 }

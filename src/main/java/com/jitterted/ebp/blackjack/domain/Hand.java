@@ -52,6 +52,10 @@ public class Hand {
         cards.add(deck.draw());
     }
 
+    public boolean isBlackJack() {
+        return cards.size() == 2 && value() == 21;
+    }
+
     public boolean isBusted() {
         return value() > 21;
     }

@@ -60,7 +60,9 @@ public class Game {
     public GameOutcome determineOutcome() {
         if (playerHand().isBusted()) {
             return GameOutcome.PLAYER_BUSTED;
-        } else if (dealerHand().isBusted()) {
+        } else if (playerHand().isBlackJack()) {
+            return GameOutcome.PLAYER_BLACKJACK;
+        }else if (dealerHand().isBusted()) {
             return GameOutcome.DEALER_BUSTED;
         } else if (playerHand().beats(dealerHand())) {
             return GameOutcome.PLAYER_WINS;
