@@ -27,7 +27,7 @@ class GameOutcomeTest {
         game.playerStands(); // make sure the player stands
         game.dealerTurn(); // dealer needs to take its turn
 
-        String outcome = game.determineOutcome();
+        String outcome = game.determineOutcome().text();
         assertThat(outcome)
                 .isEqualTo("Dealer went BUST, Player wins! Yay for you!! 💵");
     }

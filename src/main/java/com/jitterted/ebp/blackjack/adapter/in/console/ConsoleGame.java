@@ -25,7 +25,7 @@ public class ConsoleGame {
 
         dealerTurn();
         displayFinalGameState();
-        System.out.println(game.determineOutcome());
+        System.out.println(game.determineOutcome().text());
         resetScreen();
     }
 
