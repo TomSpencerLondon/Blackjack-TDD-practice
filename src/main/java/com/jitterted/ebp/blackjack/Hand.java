@@ -16,7 +16,7 @@ public class Hand {
     }
 
     public List<Card> cards() {
-        return cards;
+        return List.copyOf(cards);
     }
 
     private int value() {
