@@ -45,4 +45,14 @@ class GameOutcomeTest {
         assertThat(game.isPlayerDone())
                 .isTrue();
     }
+
+    @Test
+    void normalStartHandIsNotDone() {
+        Deck stubDeck = StubDeck.normalStartHand();
+        final Game game = new Game(stubDeck);
+
+        game.initialDeal();
+        assertThat(game.isPlayerDone())
+                .isFalse();
+    }
 }

@@ -32,6 +32,10 @@ class StubDeck extends Deck {
                             Rank.ACE, Rank.TEN);
     }
 
+    public static Deck normalStartHand() {
+        return new StubDeck(Rank.FIVE, Rank.FIVE,
+                            Rank.ACE, Rank.TEN);
+    }
 
     @Override
     public Card draw() {
