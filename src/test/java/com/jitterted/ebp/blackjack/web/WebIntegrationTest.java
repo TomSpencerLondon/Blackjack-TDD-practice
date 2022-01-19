@@ -28,9 +28,19 @@ public class WebIntegrationTest {
 
 
     @Test
+    void passToHitEndpointIsRedirect() throws Exception {
+        mockMvc.perform(post("/hit"))
+               .andExpect(status().is3xxRedirection());
+    }
+
+    @Test
     void getGameEndpointIsStatus200Ok() throws Exception {
-        mockMvc.perform(get("/game"))
+        mockMvc.perform(get("/done"))
                .andExpect(status().isOk());
     }
 
+    @Test
+    void getDoneEndpointIs200Ok() {
+
+    }
 }

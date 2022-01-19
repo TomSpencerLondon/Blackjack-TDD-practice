@@ -37,4 +37,14 @@ public class BlackjackController {
         }
         return "redirect:/game";
     }
+
+    @GetMapping("/done")
+    public String doneView(Model model) {
+        GameView gameView = GameView.of(game);
+        model.addAttribute("gameView", gameView);
+
+        model.addAttribute("outcome", game.determineOutcome().toString());
+
+        return "done";
+    }
 }
