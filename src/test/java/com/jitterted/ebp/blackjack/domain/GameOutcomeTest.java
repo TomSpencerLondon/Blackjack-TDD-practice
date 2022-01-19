@@ -33,7 +33,7 @@ class GameOutcomeTest {
     }
 
     @Test
-    void playerWinsWithBlackJack() {
+    void playerDealtBlackjackUponInitialDealWinsAndIsDone() {
         Deck stubDeck = StubDeck.playerGetsBlackJack();
         final Game game = new Game(stubDeck);
 
@@ -41,5 +41,8 @@ class GameOutcomeTest {
 
         assertThat(game.determineOutcome())
                 .isEqualTo(GameOutcome.PLAYER_BLACKJACK);
+
+        assertThat(game.isPlayerDone())
+                .isTrue();
     }
 }

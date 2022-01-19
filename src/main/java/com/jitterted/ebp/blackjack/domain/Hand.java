@@ -52,7 +52,7 @@ public class Hand {
         cards.add(deck.draw());
     }
 
-    public boolean isBlackJack() {
+    public boolean hasBlackjack() {
         return cards.size() == 2 && value() == 21;
     }
 
