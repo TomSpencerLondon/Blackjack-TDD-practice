@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListIterator;
 
-class StubDeck extends Deck {
+public class StubDeck extends Deck {
     private static final Suit DUMMY_SUIT = Suit.HEARTS;
     private final ListIterator<Card> iterator;
 
@@ -14,6 +14,10 @@ class StubDeck extends Deck {
             cards.add(new Card(DUMMY_SUIT, rank));
         }
         this.iterator = cards.listIterator();
+    }
+
+    public StubDeck(List<Card> cards) {
+        iterator = cards.listIterator();
     }
 
     public static StubDeck playerHitsAndGoesBust() {
@@ -36,6 +40,19 @@ class StubDeck extends Deck {
         return new StubDeck(Rank.FIVE, Rank.FIVE,
                             Rank.ACE, Rank.TEN);
     }
+
+    public static StubDeck playerNotDealtBlackjackHitsAndDoesNotGoBust() {
+        return new StubDeck(Rank.TEN, Rank.EIGHT,
+                            Rank.SEVEN,
+                            Rank.JACK, Rank.THREE);
+    }
+
+    public static StubDeck playerNotDealtBlackjackHitsAndGoesBust() {
+        return new StubDeck(Rank.TEN, Rank.EIGHT,
+                            Rank.SEVEN,
+                            Rank.JACK, Rank.NINE);
+    }
+
 
     @Override
     public Card draw() {

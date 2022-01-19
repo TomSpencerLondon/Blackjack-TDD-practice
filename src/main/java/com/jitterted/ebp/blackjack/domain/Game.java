@@ -1,7 +1,5 @@
 package com.jitterted.ebp.blackjack.domain;
 
-import org.springframework.stereotype.Component;
-
 public class Game {
 
     private final Deck deck;
@@ -9,6 +7,10 @@ public class Game {
     private final Hand dealerHand = new Hand();
     private final Hand playerHand = new Hand();
     private boolean playerDone;
+
+    public Game() {
+        this(new Deck());
+    }
 
     public Deck deck() {
         return deck;

@@ -15,14 +15,22 @@ public class WebIntegrationTest {
 
 
     @Test
-    void getOfHomePageIsStatus200Ok() throws Exception {
+    void getHomePageIsStatus200Ok() throws Exception {
         mockMvc.perform(get("/index.html"))
                 .andExpect(status().isOk());
     }
 
     @Test
-    void postToStartGameEndpointIsStatus300() throws Exception {
+    void postStartGameEndpointIsStatus300() throws Exception {
         mockMvc.perform(post("/start-game"))
                 .andExpect(status().is3xxRedirection());
     }
+
+
+    @Test
+    void getGameEndpointIsStatus200Ok() throws Exception {
+        mockMvc.perform(get("/game"))
+               .andExpect(status().isOk());
+    }
+
 }
