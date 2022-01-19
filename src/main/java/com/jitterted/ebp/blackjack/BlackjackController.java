@@ -17,6 +17,6 @@ public class BlackjackController {
     public String startGame() {
         // gameService.currentGame().initialDeal()
         game.initialDeal();
-        return "redirect:/";
+        return "redirect:/game";
     }
 }
