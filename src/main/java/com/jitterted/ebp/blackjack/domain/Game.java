@@ -4,8 +4,8 @@ public class Game {
 
     private final Deck deck;
 
-    private final Hand dealerHand = new Hand();
-    private final Hand playerHand = new Hand();
+    private Hand dealerHand;
+    private Hand playerHand;
     private boolean playerDone;
 
     public Game() {
@@ -47,16 +47,24 @@ public class Game {
     }
 
     public Game(Deck deck) {
+        this.dealerHand = new Hand();
+        this.playerHand = new Hand();
         this.deck = deck;
     }
 
     public void initialDeal() {
+        createHands();
         dealRoundOfCards();
         dealRoundOfCards();
 
         if (playerHand.hasBlackjack()) {
             playerDone = true;
         }
+    }
+
+    private void createHands() {
+        dealerHand = new Hand();
+        playerHand = new Hand();
     }
 
     private void dealRoundOfCards() {

@@ -104,4 +104,34 @@ public class BlackjackControllerTest {
                 .isTrue();
     }
 
+    @Test
+    public void donePageShowsFinalGameViewWithOutcome() throws Exception {
+        Game game = new Game(new Deck());
+        BlackjackController blackjackController = new BlackjackController(game);
+        blackjackController.startGame();
+
+        Model model = new ConcurrentModel();
+        blackjackController.doneView(model);
+
+        assertThat(model.containsAttribute("gameView"))
+                .isTrue();
+
+        String outcome = (String) model.getAttribute("outcome");
+
+        assertThat(outcome)
+                .isNotBlank();
+    }
+
+    @Test
+    public void standResultsInGamePlayerIsDone() throws Exception {
+        Game game = new Game();
+        BlackjackController blackjackController = new BlackjackController(game);
+        blackjackController.startGame();
+
+        blackjackController.standCommand();
+
+        assertThat(game.isPlayerDone())
+                .isTrue();
+    }
+
 }

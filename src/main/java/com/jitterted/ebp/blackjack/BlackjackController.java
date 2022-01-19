@@ -1,6 +1,7 @@
 package com.jitterted.ebp.blackjack;
 
 import com.jitterted.ebp.blackjack.domain.Game;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +12,7 @@ public class BlackjackController {
 
     private Game game;
 
+    @Autowired
     public BlackjackController(Game game) {
         this.game = game;
     }
@@ -43,8 +45,15 @@ public class BlackjackController {
         GameView gameView = GameView.of(game);
         model.addAttribute("gameView", gameView);
 
-        model.addAttribute("outcome", game.determineOutcome().toString());
+        model.addAttribute("outcome", game.determineOutcome().text());
 
         return "done";
+    }
+
+    @PostMapping("/stand")
+    public String standCommand() {
+        game.playerStands();
+
+        return "redirect:/done";
     }
 }
