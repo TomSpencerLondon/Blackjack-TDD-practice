@@ -1,5 +1,7 @@
 package com.jitterted.ebp.blackjack.domain;
 
+import org.springframework.stereotype.Component;
+
 public class Game {
 
     private final Deck deck;
