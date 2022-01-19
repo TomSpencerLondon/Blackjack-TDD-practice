@@ -13,7 +13,7 @@ public class BlackjackApplication {
     }
 
     @Bean
-    public Game game() {
+    public Game createGame() {
         return new Game(new Deck());
     }
 }
