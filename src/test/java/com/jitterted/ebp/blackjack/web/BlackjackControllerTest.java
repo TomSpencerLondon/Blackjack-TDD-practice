@@ -134,4 +134,19 @@ public class BlackjackControllerTest {
                 .isTrue();
     }
 
+    @Test
+    void standResultsInDealerDrawingCardOnTheirTurn() {
+        final StubDeck dealerBeatsPlayerAfterDrawingAdditionalCardDeck = new StubDeck(Rank.TEN, Rank.QUEEN,
+                                               Rank.NINE, Rank.FIVE,
+                                               Rank.SIX);
+
+        final Game game = new Game(dealerBeatsPlayerAfterDrawingAdditionalCardDeck);
+        final BlackjackController blackjackController = new BlackjackController(game);
+        blackjackController.startGame();
+
+        blackjackController.standCommand();
+
+        assertThat(game.dealerHand().cards())
+                .hasSize(3);
+    }
 }
