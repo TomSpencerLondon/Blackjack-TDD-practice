@@ -68,4 +68,15 @@ public class Hand {
         return hand.value() < value();
     }
 
+    public String displayValue() {
+        return String.valueOf(value());
+    }
+
+    public boolean valueEquals(int target) {
+        return value() == target;
+    }
+
+    boolean isBlackjack() {
+        return cards().size() == 2 && valueEquals(21);
+    }
 }

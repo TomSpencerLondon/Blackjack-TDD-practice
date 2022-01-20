@@ -1,8 +1,11 @@
 package com.jitterted.ebp.blackjack.domain;
 
+import com.jitterted.ebp.blackjack.domain.port.GameMonitor;
+
 public class Game {
 
     private final Deck deck;
+    private GameMonitor gameMonitor;
 
     private Hand dealerHand = new Hand();
     private Hand playerHand = new Hand();
@@ -10,6 +13,16 @@ public class Game {
 
     public Game() {
         this(new Deck());
+    }
+
+    public Game(Deck deck) {
+        this.deck = deck;
+        this.gameMonitor = game -> {};
+    }
+
+    public Game(Deck deck, GameMonitor gameMonitor) {
+        this.deck = deck;
+        this.gameMonitor = gameMonitor;
     }
 
     public Deck deck() {
@@ -23,17 +36,21 @@ public class Game {
     public void playerHits() {
         playerHand.drawFrom(deck);
         playerDone = playerHand.isBusted();
+
+        if (playerDone) {
+            gameMonitor.roundCompleted(this);
+        }
     }
 
     public void playerStands() {
         playerDone = true;
         dealerTurn();
+        gameMonitor.roundCompleted(this);
     }
 
     public boolean isPlayerDone() {
         return playerDone;
     }
-
     // "Query" rule: SNAPSHOT (point in time), does not allow
     // clients to change internal state (immutable / unmodifiable/ copy)
     // 0 - Hand - is mutable and not snapshot --> *NO*
@@ -43,12 +60,9 @@ public class Game {
     //          be careful that the interface isn't a "view" on the Hand that can change (*NO*)
     // 4 - Hand Value object ("HandView") - cards, hand's value --> Domain, often just data, domain-meaningful methods
     // 5 - Subclass that throws exception for command methods --> *NO* not nice
+
     public Hand playerHand() {
         return playerHand;
-    }
-
-    public Game(Deck deck) {
-        this.deck = deck;
     }
 
     public void initialDeal() {
@@ -57,6 +71,10 @@ public class Game {
 
         if (playerHand.hasBlackjack()) {
             playerDone = true;
+        }
+
+        if (playerDone == true) {
+            gameMonitor.roundCompleted(this);
         }
     }
 

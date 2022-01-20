@@ -31,12 +31,12 @@ public class StubDeck extends Deck {
                             Rank.QUEEN, Rank.JACK);
     }
 
-    public static Deck playerGetsBlackJack() {
+    public static StubDeck playerGetsBlackJack() {
         return new StubDeck(Rank.TEN, Rank.FIVE,
                             Rank.ACE, Rank.TEN);
     }
 
-    public static Deck normalStartHand() {
+    public static StubDeck normalStartHand() {
         return new StubDeck(Rank.FIVE, Rank.FIVE,
                             Rank.ACE, Rank.TEN);
     }
