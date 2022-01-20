@@ -59,15 +59,6 @@ public class Game {
     public boolean isPlayerDone() {
         return playerDone;
     }
-    // "Query" rule: SNAPSHOT (point in time), does not allow
-    // clients to change internal state (immutable / unmodifiable/ copy)
-    // 0 - Hand - is mutable and not snapshot --> *NO*
-    // 1 - Deep Copy of Hand - deep clone()
-    // 2 - DTO - cards (first card), hand's value --> pure data, "JavaBean", only lives in Adapters
-    // 3 - Interface - exposes just the cards and value --> only queries of Hand: ReadOnlyHand
-    //          be careful that the interface isn't a "view" on the Hand that can change (*NO*)
-    // 4 - Hand Value object ("HandView") - cards, hand's value --> Domain, often just data, domain-meaningful methods
-    // 5 - Subclass that throws exception for command methods --> *NO* not nice
 
     public Hand playerHand() {
         return playerHand;
