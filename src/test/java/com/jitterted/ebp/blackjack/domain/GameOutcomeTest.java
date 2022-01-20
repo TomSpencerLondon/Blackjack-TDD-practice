@@ -2,6 +2,7 @@ package com.jitterted.ebp.blackjack.domain;
 
 import static org.assertj.core.api.Assertions.*;
 
+import com.jitterted.ebp.blackjack.BlackjackController;
 import org.junit.jupiter.api.Test;
 
 class GameOutcomeTest {
@@ -12,7 +13,6 @@ class GameOutcomeTest {
         game.initialDeal();
 
         game.playerStands(); // make sure the player stands
-        game.dealerTurn(); // dealer needs to take its turn
 
         GameOutcome outcome = game.determineOutcome();
         assertThat(outcome)
@@ -54,5 +54,19 @@ class GameOutcomeTest {
         game.initialDeal();
         assertThat(game.isPlayerDone())
                 .isFalse();
+    }
+
+    @Test
+    void standResultsInDealerDrawingCardOnTheirTurn() {
+        final StubDeck dealerBeatsPlayerAfterDrawingAdditionalCardDeck = new StubDeck(Rank.TEN, Rank.QUEEN,
+                                                                                      Rank.NINE, Rank.FIVE,
+                                                                                      Rank.SIX);
+
+        final Game game = new Game(dealerBeatsPlayerAfterDrawingAdditionalCardDeck);
+        game.initialDeal();
+        game.playerStands();
+
+        assertThat(game.dealerHand().cards())
+                .hasSize(3);
     }
 }
