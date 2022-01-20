@@ -56,6 +56,18 @@ public class Game {
         }
     }
 
+    /*
+        gameService.currentPlayerStands() {
+            // repo.findGame();
+            game.playerStands();
+            if (game.isPlayerDone()) {
+                monitor...
+            }
+
+            // repo.saveGame();
+        }
+     */
+
     public boolean isPlayerDone() {
         return playerDone;
     }

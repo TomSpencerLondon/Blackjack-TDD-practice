@@ -15,7 +15,7 @@ public class GameResultDto {
     }
 
     public static GameResultDto of(Game game) {
-        GameResultDto gameResultDto = new GameResultDto(game.determineOutcome().toString(),
+        GameResultDto gameResultDto = new GameResultDto(game.determineOutcome().text(),
                                                         game.playerHand().displayValue(),
                                                         game.dealerHand().displayValue());
         return gameResultDto;
