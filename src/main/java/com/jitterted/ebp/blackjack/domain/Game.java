@@ -5,10 +5,10 @@ import com.jitterted.ebp.blackjack.domain.port.GameMonitor;
 public class Game {
 
     private final Deck deck;
-    private GameMonitor gameMonitor;
+    private final GameMonitor gameMonitor;
 
-    private Hand dealerHand = new Hand();
-    private Hand playerHand = new Hand();
+    private final Hand dealerHand = new Hand();
+    private final Hand playerHand = new Hand();
     private boolean playerDone;
 
     public Game() {
