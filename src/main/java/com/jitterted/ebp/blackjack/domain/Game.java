@@ -46,9 +46,8 @@ public class Game {
     }
 
     public void playerStands() {
-        playerDone = true;
         dealerTurn();
-        gameMonitor.roundCompleted(this);
+        updatePlayerDone(true);
     }
 
     public boolean isPlayerDone() {
@@ -71,14 +70,7 @@ public class Game {
     public void initialDeal() {
         dealRoundOfCards();
         dealRoundOfCards();
-
-        if (playerHand.hasBlackjack()) {
-            playerDone = true;
-        }
-
-        if (playerDone == true) {
-            gameMonitor.roundCompleted(this);
-        }
+        updatePlayerDone(playerHand.isBlackjack());
     }
 
     private void dealRoundOfCards() {
