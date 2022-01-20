@@ -35,8 +35,11 @@ public class Game {
 
     public void playerHits() {
         playerHand.drawFrom(deck);
-        playerDone = playerHand.isBusted();
+        updatePlayerDone(playerHand.isBusted());
+    }
 
+    private void updatePlayerDone(boolean isPlayerDone) {
+        playerDone = isPlayerDone;
         if (playerDone) {
             gameMonitor.roundCompleted(this);
         }
